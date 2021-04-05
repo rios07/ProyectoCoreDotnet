@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7FFEA577-88B4-40F9-9FC7-7F386F49CACC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ModelosCore</RootNamespace>
+    <AssemblyName>ModelosCore</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actores.cs" />
+    <Compile Include="Archivos.cs" />
+    <Compile Include="Base\BaseModelo.cs" />
+    <Compile Include="Base\CustomAnnotations.cs" />
+    <Compile Include="Contactos.cs" />
+    <Compile Include="CuentasDeEnvios.cs" />
+    <Compile Include="Dispositivos.cs" />
+    <Compile Include="EnviosDeCorreos.cs" />
+    <Compile Include="FuncionesDePaginas.cs" />
+    <Compile Include="GruposDeContactos.cs" />
+    <Compile Include="IconosCSS.cs" />
+    <Compile Include="Importaciones.cs" />
+    <Compile Include="LogEnviosDeCorreos.cs" />
+    <Compile Include="LogErroresApp.cs" />
+    <Compile Include="LogLogins.cs" />
+    <Compile Include="LogRegistros.cs" />
+    <Compile Include="Notas.cs" />
+    <Compile Include="PrioridadesDeSoportes.cs" />
+    <Compile Include="EstadosDeSoportes.cs" />
+    <Compile Include="CategoriasDeInformes.cs" />
+    <Compile Include="Notificaciones.cs" />
+    <Compile Include="Pass.cs" />
+    <Compile Include="LogErrores.cs" />
+    <Compile Include="Informes.cs" />
+    <Compile Include="Paginas.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelAsig_Contactos_A_GruposDeContactos.cs" />
+    <Compile Include="RelAsig_Contactos_A_TiposDeContactos.cs" />
+    <Compile Include="RelAsig_CuentasDeEnvios_A_Tablas.cs" />
+    <Compile Include="RelAsig_RolesDeUsuarios_A_Paginas.cs" />
+    <Compile Include="RelAsig_RolesDeUsuarios_A_Usuarios.cs" />
+    <Compile Include="RelAsig_TiposDeContactos_A_Contextos.cs" />
+    <Compile Include="RelAsig_Usuarios_A_Recursos.cs" />
+    <Compile Include="RolesDeUsuarios.cs" />
+    <Compile Include="Secciones.cs" />
+    <Compile Include="Tablas.cs" />
+    <Compile Include="TiposDeActores.cs" />
+    <Compile Include="Soportes.cs" />
+    <Compile Include="RegistroRolesUsuarios.cs" />
+    <Compile Include="TiposDeContactos.cs" />
+    <Compile Include="TiposDeOperaciones.cs" />
+    <Compile Include="Usuarios.cs" />
+    <Compile Include="Ejemplos\_ValidacionAnnotations.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FuncionesCore\FuncionesCore.csproj">
+      <Project>{35b46297-fcc9-4667-b328-fa7ceb8b1413}</Project>
+      <Name>FuncionesCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4DCDF202-573F-43D8-9F7D-99443DED29D7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ControladoresCore</RootNamespace>
+    <AssemblyName>ControladoresCore</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.0.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.0.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=4.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.4.2.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPdf, Version=5.2.0.22321, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPdf.5.2.0.1\lib\net40\IronPdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.5.4.0\lib\net461\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.5.4.0\lib\net461\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.4.0\lib\net461\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="QRCoder, Version=1.3.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.3.6\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.4.5.0\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.4.0\lib\net461\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActoresController.cs" />
+    <Compile Include="Base\ArchivosManagerController.cs" />
+    <Compile Include="Base\LoginController.cs" />
+    <Compile Include="Base\BaseApiController.cs" />
+    <Compile Include="Base\BaseControladores.cs" />
+    <Compile Include="Base\BaseGlobal.cs" />
+    <Compile Include="Base\TokenGenerator.cs" />
+    <Compile Include="Base\TokenValidationHandler.cs" />
+    <Compile Include="CategoriasDeInformesController.cs" />
+    <Compile Include="ContactosController.cs" />
+    <Compile Include="CuentasDeEnviosController.cs" />
+    <Compile Include="DispositivosController.cs" />
+    <Compile Include="EnviosDeCorreosController.cs" />
+    <Compile Include="Auxiliares\ExtensionesHTML.cs" />
+    <Compile Include="GruposDeContactosController.cs" />
+    <Compile Include="HomeController.cs" />
+    <Compile Include="IconosCSSController.cs" />
+    <Compile Include="LogEnviosDeCorreosController.cs" />
+    <Compile Include="LogLoginsController.cs" />
+    <Compile Include="LogRegistrosController.cs" />
+    <Compile Include="NotasController.cs" />
+    <Compile Include="NotificacionesController.cs" />
+    <Compile Include="ProvinciasController.cs" />
+    <Compile Include="RecursosController.cs" />
+    <Compile Include="ViewModels\SeccionesVM.cs" />
+    <Compile Include="ViewModels\RecursosVM.cs" />
+    <Compile Include="RelAsig_Contactos_A_GruposDeContactosController.cs" />
+    <Compile Include="RelAsig_CuentasDeEnvios_A_TablasController.cs" />
+    <Compile Include="RelAsig_RolesDeUsuarios_A_PaginasController.cs" />
+    <Compile Include="RelAsig_RolesDeUsuarios_A_UsuariosController.cs" />
+    <Compile Include="RelAsig_TiposDeContactos_A_ContextosController.cs" />
+    <Compile Include="ReservasDeRecursosController.cs" />
+    <Compile Include="ViewModels\ReservasDeRecursosVM.cs" />
+    <Compile Include="SoportesController.cs" />
+    <Compile Include="LogErroresController.cs" />
+    <Compile Include="InformesController.cs" />
+    <Compile Include="PaginasController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TareasController.cs" />
+    <Compile Include="TiposDeContactosController.cs" />
+    <Compile Include="TiposDeTareasController.cs" />
+    <Compile Include="UsuariosController.cs" />
+    <Compile Include="ViewModels\ActoresVM.cs" />
+    <Compile Include="ViewModels\ArchivosVM.cs" />
+    <Compile Include="ViewModels\ContactosVM.cs" />
+    <Compile Include="ViewModels\CuentasDeEnviosVM.cs" />
+    <Compile Include="ViewModels\DispositivosVM.cs" />
+    <Compile Include="ViewModels\EnviosDeCorreosVM.cs" />
+    <Compile Include="ViewModels\EstadosDeTareasVM.cs" />
+    <Compile Include="ViewModels\FuncionesDePaginasVM.cs" />
+    <Compile Include="ViewModels\GruposDeContactosVM.cs" />
+    <Compile Include="ViewModels\IconosCSSVM.cs" />
+    <Compile Include="ViewModels\ImportanciasDeTareasVM.cs" />
+    <Compile Include="ViewModels\LogEnviosDeCorreosVM.cs" />
+    <Compile Include="ViewModels\LogLoginsVM.cs" />
+    <Compile Include="ViewModels\LogRegistrosVM.cs" />
+    <Compile Include="ViewModels\NotasVM.cs" />
+    <Compile Include="ViewModels\PrioridadesDeSoportesVM.cs" />
+    <Compile Include="ViewModels\EstadosDeSoportesVM.cs" />
+    <Compile Include="ViewModels\CategoriasDeInformesVM.cs" />
+    <Compile Include="ViewModels\BaseVM.cs" />
+    <Compile Include="ViewModels\DataAnnotations\CustomDataAnnotations.cs" />
+    <Compile Include="ViewModels\NotificacionesVM.cs" />
+    <Compile Include="ViewModels\PassVM.cs" />
+    <Compile Include="ViewModels\LogErroresVM.cs" />
+    <Compile Include="ViewModels\InformesVM.cs" />
+    <Compile Include="ViewModels\LoginVM.cs" />
+    <Compile Include="ViewModels\PaginasVM.cs" />
+    <Compile Include="ViewModels\ProvinciasVM.cs" />
+    <Compile Include="ViewModels\RegistroRolesUsuariosVMcs.cs" />
+    <Compile Include="ViewModels\RelAsig_Contactos_A_GruposDeContactosVM.cs" />
+    <Compile Include="ViewModels\RelAsig_Contactos_A_TiposDeContactosVM.cs" />
+    <Compile Include="ViewModels\RelAsig_CuentasDeEnvios_A_TablasVM.cs" />
+    <Compile Include="ViewModels\RelAsig_TiposDeContactos_A_ContextosVM.cs" />
+    <Compile Include="ViewModels\RelAsig_Usuarios_A_RecursosVM.cs" />
+    <Compile Include="ViewModels\ResetPassVM.cs" />
+    <Compile Include="ViewModels\RolesDeUsuariosVM.cs" />
+    <Compile Include="ViewModels\RolesVM.cs" />
+    <Compile Include="ViewModels\RelAsig_RolesDeUsuarios_A_PaginasVM.cs" />
+    <Compile Include="ViewModels\RelAsig_RolesDeUsuarios_A_UsuariosVM.cs" />
+    <Compile Include="ViewModels\TablasVM.cs" />
+    <Compile Include="ViewModels\TareasVM.cs" />
+    <Compile Include="ViewModels\TiposDeActorVM.cs" />
+    <Compile Include="ViewModels\SoportesVM.cs" />
+    <Compile Include="ViewModels\TiposDeContactosVM.cs" />
+    <Compile Include="ViewModels\TiposDeOperacionesVM.cs" />
+    <Compile Include="ViewModels\TiposDeTareaVM.cs" />
+    <Compile Include="ViewModels\UsuariosVM.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FuncionesCore\FuncionesCore.csproj">
+      <Project>{35b46297-fcc9-4667-b328-fa7ceb8b1413}</Project>
+      <Name>FuncionesCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelosCore\ModelosCore.csproj">
+      <Project>{7ffea577-88b4-40f9-9fc7-7f386f49cacc}</Project>
+      <Name>ModelosCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RepositoriosCore\RepositoriosCore.csproj">
+      <Project>{136a396e-e9d3-426a-af39-a12862ebaf6f}</Project>
+      <Name>RepositoriosCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiciosCore\ServiciosCore.csproj">
+      <Project>{c67eb600-adfa-4462-a505-003a452af01b}</Project>
+      <Name>ServiciosCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\_DatosDelSistema\_DatosDelSistema.csproj">
+      <Project>{b8b32fb1-ba6b-4e07-87ba-554198892a3c}</Project>
+      <Name>_DatosDelSistema</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

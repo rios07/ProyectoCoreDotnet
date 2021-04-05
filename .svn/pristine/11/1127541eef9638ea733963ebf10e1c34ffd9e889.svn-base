@@ -1,0 +1,25 @@
+﻿using ModelosCore;
+using RepositoriosCore;
+using RepositoriosCore.Base;
+
+namespace ServiciosCore
+{
+    public interface IImportacionesServicio : IBaseServicios<Importaciones, ImportacionesExt>
+    {
+    }
+
+    public class ImportacionesServicio : BaseServicios<Importaciones, ImportacionesExt>, IImportacionesServicio
+    {
+        private readonly IImportacionesRepositorio _ImportacionesRepositorio;
+
+        public ImportacionesServicio(IImportacionesRepositorio pImportacionesRepositorio)
+        {
+            _ImportacionesRepositorio = pImportacionesRepositorio;
+        }
+
+        public override IRepositorio<Importaciones, ImportacionesExt> GetRepositorio()
+        {
+            return _ImportacionesRepositorio;
+        }
+    }
+}

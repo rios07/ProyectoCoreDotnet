@@ -1,0 +1,199 @@
+﻿using AutoMapper;
+using ModelosCore;
+using RepositoriosCore;
+using ServiciosCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using ControladoresCore.ViewModels;
+using FuncionesCore;
+using System.Collections;
+
+namespace ControladoresCore.Base
+{
+    // Si no quiero usar U, tengo la posibilidad de solo pasarle T y su ViewModel
+    // public abstract class BaseControladores<Modelo, VM> : BaseControladores<Modelo, Modelo, VM, VM> where Modelo : BaseModelo where VM : new()
+    public abstract class BaseControladores<Modelo, VM> : BaseControladores<Modelo, Modelo, VM, VM> where Modelo : BaseModelo where VM : BaseVM, new()
+    {
+        public BaseControladores(ILogErroresServicio pLogErroresServicio, IUsuariosServicio pUsuariosServicio) : base(pLogErroresServicio, pUsuariosServicio)
+        {
+        }
+    }
+
+    // Si no quiero usar ni U, ni ViewModel, solo le paso T (el modelo)
+    //public abstract class BaseControladores<T> : BaseControladores<T, T, T, T> where T : new() { }
+
+    // public abstract class BaseControladores<Modelo, ModeloExt, VM> : BaseControladores<Modelo, ModeloExt, VM, VM> where Modelo : BaseModelo where ModeloExt : Modelo where VM : new()
+    public abstract class BaseControladores<Modelo, ModeloExt, VM> : BaseControladores<Modelo, ModeloExt, VM, VM> where Modelo : BaseModelo where ModeloExt : Modelo where VM : BaseVM, new()
+    {
+        public BaseControladores(ILogErroresServicio pLogErroresServicio,IUsuariosServicio pUsuariosServicio) : base(pLogErroresServicio, pUsuariosServicio)
+        {
+        }
+    }
+
+    /// <summary>
+    /// Controlador base para que lo hereden todos los demás, acá iria la funcionalidad compartida.
+    /// </summary>
+    [Authorize]
+    //public abstract class BaseControladores<Modelo, ModeloExt, VM, VMExt> : Controller where Modelo : BaseModelo where ModeloExt : Modelo where VM : new()
+    public abstract class BaseControladores<Modelo, ModeloExt, VM, VMExt> : Controller where Modelo : BaseModelo where ModeloExt : Modelo where VM : BaseVM, new()
+    {
+        ILogErroresServicio _logErroresServicio;
+        public abstract IBaseServicios<Modelo, ModeloExt> GetServicio();
+        private IUsuariosServicio _usuariosServicio;
+        private Msg _miMsg;  //private List<Mensaje> _miMsg;
+
+        public BaseControladores(ILogErroresServicio pLogErroresServicio, IUsuariosServicio pUsuariosServicio)
+        {
+            _logErroresServicio = pLogErroresServicio;
+            _usuariosServicio = pUsuariosServicio;
+            _miMsg = new Msg(); // List<Mensaje>();
+            //GetServicio().SetMiMsg(_miMsg);
+        }
+
+        public virtual ActionResult Create()
+        {
+            return View(new VM());
+        }
+
+        [HttpPost]
+        public virtual ActionResult Create(VM pObj)
+        {
+            if (ModelState.IsValid || true) // ESTAMOS SALTANDO LA VALIDACION POR Q DA ERROR SIEMPRE!!
+            {
+                VM source = pObj;
+                Modelo destination = Mapper.Map<VM, Modelo>(source);
+
+                //Acá me deja utilizar el ModelState por q estoy en el HttpPost, pero si lo paso al model, ahi me da error.
+                //ModelState.AddModelError("Texto", "El texto debe tener al menos 5 caracteres.");
+
+                GetServicio().Create(destination, ref _miMsg);
+
+                // Si tiene errores --> Le retorno la misma p q corrija, si no, --> le retorno una nueva p q siga agregando.
+                return _miMsg.TieneElementos() ? View(pObj) : View();
+            }
+            else
+            {
+                return View(pObj); // Le retorno la misma p q corrija
+            }
+        }
+
+        public virtual ActionResult Delete(int pId)
+        {
+            GetServicio().Delete(pId, ref _miMsg);
+            return View();
+        }
+
+        public virtual ActionResult Details(int pId)
+        {
+            /*T registro = GetServicio().Get(id);
+
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<T, VM_T>();
+            });
+
+            IMapper iMapper = config.CreateMapper();*/
+
+            Modelo source = GetServicio().Get(pId, ref _miMsg); ;
+            VM destination = Mapper.Map<Modelo, VM>(source);
+            return View(destination);
+        }
+
+        public virtual ActionResult Edit(int pId)
+        {
+            /*T registro = GetServicio().Get(id);
+
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<T, VM_T>();
+            });
+
+            IMapper iMapper = config.CreateMapper();*/
+
+            Modelo source = GetServicio().Get(pId, ref _miMsg); ;
+            VM destination = Mapper.Map<Modelo, VM>(source);
+            return View(destination);
+        }
+
+        [HttpPost]
+        public virtual ActionResult Edit(int pId, VM pObj)
+        {
+            VM source = pObj;
+            Modelo destination = Mapper.Map<VM, Modelo>(source);
+            GetServicio().Update(destination, ref _miMsg);
+            return RedirectToAction("Index");
+        }
+
+        public virtual ActionResult Index()
+        {
+            /*
+             * PASO TODA LA INCIALIZACION DEL AUTOMAPPER AL GLOBAL.ASAX
+             * 
+            List<U> lista = GetServicio().GetAll().ToList();
+
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<U, VM_U>();
+            });
+
+            IMapper iMapper = config.CreateMapper();*/
+
+            List<ModeloExt> source = GetServicio().GetAll(ref _miMsg).ToList();
+            List<VMExt> destination = Mapper.Map<List<ModeloExt>, List<VMExt>>(source);
+            return View(destination);
+        }
+
+        /// <summary>
+        /// función que se ejecuta justo antes de cualquier acción de un controller derivado de BaseControladores
+        /// </summary>
+        /// <param name="pFilterContext"></param>
+        protected override void OnActionExecuting(ActionExecutingContext pFilterContext)
+        {
+            if (Request.Cookies[".ASPXAUTH"] != null && Session["DatosDeLogin"] == null)
+            {
+                Msg pMsg = new Msg();
+                DatosDeLogin datosDeLogin = _usuariosServicio.ConfirmarCookie(Server.HtmlEncode(Request.Cookies[".ASPXAUTH"].Value), ref pMsg);
+                Session.Add("DatosDeLogin", datosDeLogin);
+                GetServicio().SetDatosDeLogin(datosDeLogin);
+            }
+            else
+            {
+                DatosDeLogin datosDeLogin = (DatosDeLogin)Session["DatosDeLogin"];
+                GetServicio().SetDatosDeLogin(datosDeLogin);
+            }
+        }
+        
+        /// <summary>
+        /// Para manejar las excepciones de todo el BaseControladores
+        /// </summary>
+        /// <param name="pFilterContext"></param>
+        protected override void OnException(ExceptionContext pFilterContext)
+        {
+            pFilterContext.ExceptionHandled = true;
+            string controllerName = pFilterContext.RouteData.Values["controller"].ToString();
+            string actionName = pFilterContext.RouteData.Values["action"].ToString();
+
+            pFilterContext.Result = new ViewResult
+            {
+                ViewName = "~/Views/Shared/Error.cshtml",
+            };
+            ViewResult result = (ViewResult)pFilterContext.Result;
+            result.ViewBag.ErrorMessage = pFilterContext.Exception.Message;
+
+            DatosDeLogin datosDeLogin = (DatosDeLogin)Session["DatosDeLogin"];
+            _logErroresServicio.SetDatosDeLogin(datosDeLogin); //TODO: Revisar para cuando DatosDeLogin es NULL
+            Msg ls = new Msg(); // no la voy a utilizar
+            _logErroresServicio.Create(new LogErrores() { Mensaje = pFilterContext.Exception.Message, Modulo = controllerName, Metodo = actionName }, ref ls);
+        }
+
+        /// <summary>
+        /// Esta función se llama LUEGO de ejecutar cada action.
+        /// </summary>
+        /// <param name="pFilterContext"></param>
+        protected override void OnActionExecuted(ActionExecutedContext pFilterContext)
+        {
+            base.OnActionExecuted(pFilterContext);
+            ViewResult result = (ViewResult)pFilterContext.Result;
+            result.ViewBag.MiMsg = _miMsg;
+        }
+    }
+}

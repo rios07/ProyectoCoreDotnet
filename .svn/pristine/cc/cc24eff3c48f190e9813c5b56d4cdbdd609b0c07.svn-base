@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{136A396E-E9D3-426A-AF39-A12862EBAF6F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RepositoriosCore</RootNamespace>
+    <AssemblyName>RepositoriosCore</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.8.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.8.0\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper, Version=1.50.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.4\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.3\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActoresRepositorio.cs" />
+    <Compile Include="ArchivosRepositorio.cs" />
+    <Compile Include="Base\BaseRepositorio.cs" />
+    <Compile Include="CategoriasDeInformesRepositorio.cs" />
+    <Compile Include="LogErroresAppRespositorio.cs" />
+    <Compile Include="SeccionesRepositorio.cs" />
+    <Compile Include="ContactosRepositorio.cs" />
+    <Compile Include="CuentasDeEnviosRepositorio.cs" />
+    <Compile Include="DispositivosRepositorio.cs" />
+    <Compile Include="EnviosDeCorreosRepositorio.cs" />
+    <Compile Include="FuncionesDePaginasRepositorio.cs" />
+    <Compile Include="GruposDeContactosRepositorio.cs" />
+    <Compile Include="IconosCSSRepositorio.cs" />
+    <Compile Include="ImportacionesRepositorio.cs" />
+    <Compile Include="LogEnviosDeCorreosRepositorio.cs" />
+    <Compile Include="LogLoginsRepositorio.cs" />
+    <Compile Include="LogRegistrosRepositorio.cs" />
+    <Compile Include="NotasRepositorio.cs" />
+    <Compile Include="PrioridadesDeSoportes.cs" />
+    <Compile Include="NotificacionesRepositorio.cs" />
+    <Compile Include="Conexion\Conexion.cs" />
+    <Compile Include="RelAsig_Contactos_A_GruposDeContactosRepositorio.cs" />
+    <Compile Include="RelAsig_Contactos_A_TiposDeContactosRepositorio.cs" />
+    <Compile Include="RelAsig_CuentasDeEnvios_A_TablasRepositorio.cs" />
+    <Compile Include="RelAsig_RolesDeUsuarios_A_PaginasRepositorio.cs" />
+    <Compile Include="RelAsig_RolesDeUsuarios_A_UsuariosRepositorio.cs" />
+    <Compile Include="RelAsig_TiposDeContactos_A_ContextosRepositorio.cs" />
+    <Compile Include="RelAsig_Usuarios_A_RecursosRepositorio.cs" />
+    <Compile Include="RolesDeUsuariosRepositorio.cs" />
+    <Compile Include="SoportesRepositorio.cs" />
+    <Compile Include="LogErroresRepositorio.cs" />
+    <Compile Include="InformesRepositorio.cs" />
+    <Compile Include="PaginasRepositorio.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolesRepositorio.cs" />
+    <Compile Include="EstadosDeSoportesRepositorio.cs" />
+    <Compile Include="TablasRepositorio.cs" />
+    <Compile Include="TiposDeActoresRepositorio.cs" />
+    <Compile Include="TiposDeContactosRepositorio.cs" />
+    <Compile Include="TiposDeOperacionesRepositorio.cs" />
+    <Compile Include="UsuariosRepositorio.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FuncionesCore\FuncionesCore.csproj">
+      <Project>{35b46297-fcc9-4667-b328-fa7ceb8b1413}</Project>
+      <Name>FuncionesCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelosCore\ModelosCore.csproj">
+      <Project>{7FFEA577-88B4-40F9-9FC7-7F386F49CACC}</Project>
+      <Name>ModelosCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\_DatosDelSistema\_DatosDelSistema.csproj">
+      <Project>{b8b32fb1-ba6b-4e07-87ba-554198892a3c}</Project>
+      <Name>_DatosDelSistema</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL\SI2018_MVC_P1__00__Core__Drop SPs y funciones de toda la BD.sql" />
+    <Content Include="SQL\SI2018_MVC_P1__10__Core__Constantes___v3.30.0.sql" />
+    <Content Include="SQL\SI2018_MVC_P1__11__Core__Functions___v3.30.0.sql" />
+    <Content Include="SQL\SI2018_MVC_P1__12__Core__Validaciones___v3.30.0.sql" />
+    <Content Include="SQL\SI2018_MVC_P1__13__Core__SP_LOGS_de_Registros___v3.30.0.sql" />
+    <Content Include="SQL\SI2018_MVC_P1__14__Core__SP_LOGIN___v3.30.0.sql" />
+    <Content Include="SQL\SI2018_MVC_P1__15__Core__SP_PERMISOS___v3.30.0.sql" />
+    <Content Include="SQL\ABM.sql" />
+    <Content Include="SQL\SI2018_MVC_P1__16__Core__SP_ABM___v3.30.0.sql" />
+    <Content Include="SQL\SI2018_MVC_P1__17__Core__SP_REGISTROS___v3.30.0.sql" />
+    <Content Include="SQL\SI2018_MVC_P1__18__Core__SP_LISTADOS___v3.30.0.sql" />
+    <Content Include="SQL\SI2018_MVC_P1__22__Core__SP_WebService.sql" />
+    <Content Include="SQL\SI2018_MVC_P1__23__Core__TRIGGERS.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

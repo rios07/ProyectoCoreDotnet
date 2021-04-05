@@ -1,0 +1,50 @@
+﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using ControladoresCore.ViewModels;
+using FuncionesCore;
+using RepositoriosCore;
+using ServiciosCore;
+namespace ControladoresCore.Base
+{
+    public class LoginController : ApiController
+    {
+        private readonly IUsuariosServicio _IUsuariosServicio;
+
+        public LoginController(IUsuariosServicio pIUsuarioServicio)
+        {
+            _IUsuariosServicio = pIUsuarioServicio;
+        }
+
+        // GET: api/Login
+        [AllowAnonymous]
+        public HttpResponseMessage Post([FromBody] LoginVM pLoginData)
+        {
+            try
+            {
+                NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+                string jsonToLog = Newtonsoft.Json.JsonConvert.SerializeObject(pLoginData);
+                Logger.Info(jsonToLog);
+
+                var datosDeLogin = new DatosDeLogin();
+                if (string.IsNullOrEmpty(pLoginData.Imei))
+                {
+                    return Request.CreateResponse(HttpStatusCode.Unauthorized, "Faltan datos criticos para el login");
+                }
+                var controllerBag = new ControllerBag();
+                controllerBag.CodigoDeContexto = pLoginData.Contexto;
+                var loginData = new LoginData {Pass = pLoginData.Contraseña, UserName = pLoginData.Usuario};
+                if (_IUsuariosServicio.ValidarUsuario(loginData, ref datosDeLogin, ref controllerBag))
+                    return Request.CreateResponse(HttpStatusCode.OK,
+                        TokenGenerator.GenerateTokenJwt(datosDeLogin.NombreCompleto,
+                            datosDeLogin.UsuarioId.ToString()));
+                return Request.CreateResponse(HttpStatusCode.Unauthorized, controllerBag[0].Contenido);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+    }
+}
